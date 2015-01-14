@@ -1,0 +1,109 @@
+<!doctype html>
+<html ng-app = "app">
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Drug Wars</title>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="author" href="humans.txt">
+        <link rel="stylesheet" type="text/css" href="css/drugwars.css">
+        <link rel="stylesheet" type="text/css" href="css/jquery.countdownTimer.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="js/jquery.countdownTimer.js"></script>
+    </head>
+    <body ng-controller = "moneyCtrl">
+        <div class="container-fluid">
+          <div class="top">
+          <div class="row">
+            <div class="col-md-4">
+            <div id="travelTimer"> </div>
+            </div>
+            <div class="col-md-4">
+              <h1>Welcome to Drug Wars</h1>
+            </div>
+            <div class="col-md-2 col-md-offset-2">
+              <div id="moneyTotal"> {{money.total}}
+                </div>
+            </div>
+            </div>
+          </div>
+          <div class="main">
+          <div class="row">
+            <div class="col-md-2">
+              <div class="side">
+                <div id="crimes" class = "buttons"> <h3>Crime</h3> </div>
+                <div id="travel" class = "buttons"> <h3>Travel</h3> </div>
+                <div id="trade" class = "buttons"> <h3> Trade</h3> </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="travelNotice">
+                
+              </div>
+            </div>
+            </div>
+          </div>
+          <div class="contain">
+          
+                <div class='crimeResult'>
+                  <div class='row'>
+                    <div class='col-md-4 col-md-offset-4'>
+                    </div>
+                  </div>
+      </div>
+        <div class="jail">
+          <div class="row">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+              <h3> Your crime failed. You're imprisoned. Sorry.</h3>
+              <button id = "jailRelease"> Get out of jail. </button>
+              <div id="jailTimer"> </div>
+        
+        <div class="bribeJail">
+          <button id="bribeJail"> Slip your jailer some cash and get out of jail.</button>
+          </div>
+          <div class="bribeResult">
+          </div>
+          </div>
+        </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <button id = "return"> Back to the main menu?</button>
+          </div>
+        </div>
+        </div>
+        <div class='containTravel'>
+          <div class='row'>
+            <div class='col-md-4 col-md-offset-3'>
+              <div>
+                <h3 class='cities'> Tokyo</h3>
+                <h3 class='cities'> London</h3>
+                <h3 class='cities'> Los Angeles</h3>
+                <h3 class='cities'> New York</h3>
+              </div>
+          </div>
+            <div class='col-md-2'>
+              <button class = 'travelBtn' id='tokyo'> Travel Here</button> <br>
+              <button class = 'travelBtn' id='london'> Travel Here</button><br>
+              <button class = 'travelBtn' id='losAngeles'> Travel Here</button><br>
+              <button class = 'travelBtn' id='newYork'> Travel Here</button><br>
+            </div>
+          </div>
+        </div>
+        <div class="containTrade">
+        <div class="row">
+          <div class="col-md-4 col-md-offset-4">
+            <button class="submitTrade"> Submit</button>
+          </div>
+        </div>
+        </div>
+        </div>
+        <script src="js/drugAngular.js"></script>
+        <script src="js/drugQuery.js"></script>
+
+    </body>
+</html>
