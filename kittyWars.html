@@ -7,16 +7,19 @@
         <title>Kitty Wars</title>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="author" href="humans.txt">
-        <link rel="stylesheet" type="text/css" href="css/drugwars.scss">
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
-         <script src="js/drugAngular.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/kittyWars.scss">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>
+        <script src="https://cdn.firebase.com/js/client/2.0.4/firebase.js"></script>
+        <script src="https://cdn.firebase.com/libs/angularfire/0.9.1/angularfire.min.js"></script>
+        <script src="https://cdn.firebase.com/js/simple-login/1.6.4/firebase-simple-login.js"></script>
+        <script src="js/kittyAngular.js"> </script>
     </head>
     <body ng-controller = "moneyCtrl">
         <div class="container-fluid">
           <div class="top">
           <div class="row">
             <div class="col-md-3">
-            <div id="travelTimer" ng-show = "travelTimer"><h4> You haz <span> {{secondsTravelExpire}}</span> seconds until you can travel. </h4> </div>
+            <div ="travelTimer" ng-show = "travelTimer"><h4> You haz <span> {{TravelTimerSaved.amount}}</span> seconds until you can travel. </h4> </div>
             </div>
             <div class="col-md-4 col-md-offset-1">
               <div><h1>Welcome to Kitty Wars</h1>
@@ -28,25 +31,43 @@
                 </div>
             </div>
             <div class="col-md-2 col-md-offset-2">
-              <div id="moneyTotal"> <h4> You haz <span>{{money.total}}</span> cheezburgers. </h4>
+              <div id="moneyTotal"> <h4> You haz <span>{{moneyFire.total}}</span> cheezburgers. </h4>
                 </div>
             </div>
             </div>
           </div>
-          <div class = "main" ng-model = "Main" ng-show= "Main" ng-class = "classWoo">
+          <div class = "main" ng-model = "Main" ng-show= "Main" ng-class = "TravelLocation.place">
+          <div class="side">
           <div class="row">
             <div class="col-md-2">
-              <div class="side">
-                <div id="crimes" class = "buttons" ng-click="Crime = !Crime; Main = !Main; Return = !Return" > <h3>Schemes</h3> </div>
-                <div id="travel" class = "buttons" ng-click = "travel = !travel; Main = !Main; Return = !Return"> <h3>Travel</h3> </div>
-                <div id="trade" class = "buttons" ng-click = "trade(classWoo); Trade"> <h3> Trade</h3> </div>
-                <div id="trade" class = "buttons" ng-click = "UpgradeSwitch()"> <h3> Upgrades</h3> </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="travelNotice">
+                <button id="crimes" class = "buttons" ng-click="Crime = !Crime; Main = !Main; Return = !Return" ng-disabled = "JailTimer.amount>0"> <h3>Schemes</h3> </button>
+                </div>
+                <div class="col-md-8">
+              <div class="jailStuff" ng-show = "JailTimer.amount>0" > <h3> You can continue playing in <span> {{JailTimer.amount}}</span>  seconds</h3></div>
                 
               </div>
+                </div>
+                
+                 <div class="row">
+                <div class="col-md-2">
+
+                <button id="travel" class = "buttons" ng-click = "travel = !travel; Main = !Main; Return = !Return" ng-disabled = "JailTimer.amount>0"> <h3>Travel</h3> </button>
+
+                </div>
+                </div>
+
+                <div class="row">
+                <div class="col-md-2">
+                <button id="trade" class = "buttons" ng-click = "trade(classWoo); Trade" ng-disabled = "JailTimer.amount>0"> <h3> Trade</h3> </button>
+                </div>
+                </div>
+
+                <div class="row">
+                <div class="col-md-2">
+                <button id="trade" class = "buttons" ng-click = "UpgradeSwitch()" ng-disabled = "JailTimer.amount>0"> <h3> Upgrades</h3> </button>
+              </div>
+            </div>
+            </div>
             </div>
             </div>
           </div>
@@ -100,7 +121,7 @@
         <div>
           <div class='row, crimeResult' ng-show= "pettyWins">
             <div class='col-md-4 col-md-offset-4'>
-              <div ng-model= "pettyWins" > <p> You were succesful in your endevour. You earned  {{win}}  cheezburgers! You now have {{money.total}}  cheezburgers to spend! </p></div>
+              <div ng-model= "pettyWins" > <p> You were succesful in your endevour. You earned  {{win}}  cheezburgers! You now have {{moneyFire.total}}  cheezburgers to spend! </p></div>
             </div>
           </div>
         </div>
@@ -109,12 +130,12 @@
           <div class="row">
             <div class="col-md-4">
             </div>
-            <div class="col-md-6" ng-model = "jailTimer">
-              <h3 ng-show = "pettyFail"> You were slightly too vigorous in your yarn extraction project. You've tied yourself up. </h3>
+            <div class="col-md-4" ng-model = "jailTimer">
+              <h3 ng-show = "pettyFail" class = "failWords"> You were slightly too vigorous in your yarn extraction project. You've tied yourself up. </h3>
               <div ng-model = "jailRelease">
-              <button id = "jailRelease" ng-model = "jailTimer" ng-click = "jailRelease || JailRelease()"  ng-disabled= "secondsBeforeExpire > 0"> Unravel yourself.  </button>
+              <button id = "jailRelease" ng-model = "jailTimer" ng-click = "jailRelease || JailRelease()"  ng-disabled= "JailTimer.amount > 0"> Unravel yourself.  </button>
               </div>
-              <div id="jailTimer" ng-show = "jailTimer"> <h5> You have <span ng-bind = "secondsBeforeExpire"></span> seconds until you are free.</h5> </div>
+              <div id="jailTimer" ng-show = "jailTimer"> <h5> You have <span>{{JailTimer.amount}}></span> seconds until you are free.</h5> </div>
         
         <div class="bribeJail">
           <button id="bribeJail" ng-click = "bribe()"> Tempt the famiily dog with your cheezburgers. Maybe he'll help you.</button>
@@ -128,12 +149,12 @@
           <div class="row">
             <div class="col-md-4">
             </div>
-            <div class="col-md-6" ng-model = "jailTimer">
-              <h3 ng-show = "pettyFail"> The milkman didn't see you in his car. You're trapped in the milk truck. </h3>
+            <div class="col-md-4" ng-model = "jailTimer">
+              <h3 ng-show = "pettyFail1" class = "failWords"> The milkman didn't see you in his car. You're trapped in the milk truck. </h3>
               <div ng-model = "jailRelease">
               <button id = "jailRelease" ng-model = "jailTimer" ng-click = "jailRelease || JailRelease()"  ng-disabled= "secondsBeforeExpire > 0"> Get out of the truck on the next delivery.  </button>
               </div>
-              <div id="jailTimer" ng-show = "jailTimer"> <h5> You have <span ng-bind = "secondsBeforeExpire"></span> seconds until you are free.</h5> </div>
+              <div id="jailTimer" ng-show = "jailTimer"> <h5> You have <span >{{JailTimer.amount}}</span> seconds until you are free.</h5> </div>
         
         <div class="bribeJail">
           <button id="bribeJail" ng-click = "bribe()"> Bribe the driver for an early reprieve. </button>
@@ -149,11 +170,11 @@
             <div class="col-md-4">
             </div>
             <div class="col-md-4" ng-model = "jailTimer">
-              <h3 ng-show = "pettyFail"> The dog house was inhabited by a bulldog. He's got you pinned up to the wall. You're not going anywhere.  </h3>
+              <h3 ng-show = "pettyFail2" class = "failWords"> The dog house was inhabited by a bulldog. He's got you pinned up to the wall. You're not going anywhere.  </h3>
               <div ng-model = "jailRelease">
               <button id = "jailRelease" ng-model = "jailTimer" ng-click = "jailRelease || JailRelease()"  ng-disabled= "secondsBeforeExpire > 0"> Submit to the dog, escape with your skin.  </button>
               </div>
-              <div id="jailTimer" ng-show = "jailTimer"> <h5> You have <span ng-bind = "secondsBeforeExpire"></span> seconds until you are free.</h5> </div>
+              <div id="jailTimer" ng-show = "jailTimer"> <h5> You have <span >{{JailTimer.amount}}</span> seconds until you are free.</h5> </div>
         
         <div class="bribeJail">
           <button id="bribeJail" ng-click = "bribe()"> Try to trade some of your cheezburgers for your hide. </button>
@@ -170,11 +191,11 @@
             <div class="col-md-4">
             </div>
             <div class="col-md-4" ng-model = "jailTimer">
-              <h3 ng-show = "pettyFail"> Well.. the bird flew away.. as it's a bird. Also, you're trapped on the roof. Probably not going anywhere for a while..  </h3>
+              <h3 ng-show = "pettyFail3" class = "failWords"> Well.. the bird flew away.. as it's a bird. Also, you're trapped on the roof. Probably not going anywhere for a while..  </h3>
               <div ng-model = "jailRelease">
               <button id = "jailRelease" ng-model = "jailTimer" ng-click = "jailRelease || JailRelease()"  ng-disabled= "secondsBeforeExpire > 0"> Meow loud enough, get help.   </button>
               </div>
-              <div id="jailTimer" ng-show = "jailTimer"> <h5> You have <span ng-bind = "secondsBeforeExpire"></span> seconds until you are free.</h5> </div>
+              <div id="jailTimer" ng-show = "jailTimer"> <h5> You have <span >{{JailTimer.amount}}</span> seconds until you are free.</h5> </div>
         
         <div class="bribeJail">
           <button id="bribeJail" ng-click = "bribe()"> Bribe the firetruck down the end for help. They look hungry... </button>
@@ -195,7 +216,7 @@
                 </div>
                 </div>
                 <div class='col-md-2'>
-              <button class = 'travelBtn' id='tokyo' ng-click = "changeClassTokyo()" ng-disabled= "secondsTravelExpire > 0"> Travel Here</button> 
+              <button class = 'travelBtn' id='tokyo' ng-click = "changeClassTokyo()" ng-disabled= "TravelTimerSaved.amount > 0"> Travel Here</button> 
             </div>
             </div>
             <div class='row'>
@@ -205,7 +226,7 @@
                 </div>
                 </div>
                 <div class='col-md-2'>
-              <button class = 'travelBtn' id='london' ng-click = "changeClassLondon()" ng-disabled= "secondsTravelExpire > 0"> Travel Here</button>
+              <button class = 'travelBtn' id='london' ng-click = "changeClassLondon()" ng-disabled= "TravelTimerSaved.amount > 0"> Travel Here</button>
             </div>
             </div>
             <div class='row'>
@@ -215,7 +236,7 @@
               </div>
             </div>
             <div class='col-md-2'>
-                <button class = 'travelBtn' id='losAngeles' ng-click = "changeClassLA()" ng-disabled= "secondsTravelExpire > 0"> Travel Here</button>
+                <button class = 'travelBtn' id='losAngeles' ng-click = "changeClassLA()" ng-disabled= "TravelTimerSaved.amount > 0"> Travel Here</button>
             </div>
           </div>
           <div class='row'>
@@ -225,7 +246,7 @@
               </div>
             </div>
             <div class='col-md-2'>
-              <button class = 'travelBtn' id='newYork' ng-click = "changeClassNY()" ng-disabled= "secondsTravelExpire > 0"> Travel Here</button>
+              <button class = 'travelBtn' id='newYork' ng-click = "changeClassNY()" ng-disabled= "TravelTimerSaved.amount > 0"> Travel Here</button>
             </div>
           </div>
         </div>
@@ -239,8 +260,8 @@
             <td class = "upT"> <input type='number'  id = 'mInput' class = 'amount' ng-model = "drugCostm"></td>
             <td class = "upT"><button ng-click = "Buym()" > Buy </button></td>
             <td class = "upT"><button ng-click = "Sellm()" > Sell</button></td>
-            <td class = "upT"> <p class = "table">{{drugCountm.drug}} </p></td>
-            <td class = "upT"> <p class = "tCount">{{drugCountm.amount}} </p> </td>
+            <td class = "upT"> <p class = "table">{{drugCountM.drug}} </p></td>
+            <td class = "upT"> <p class = "tCount">{{dataM.amount}} </p> </td>
           </tr>
           <tr>
             <td class = "upT"> <p class = "table">Catnip </p></td>
@@ -249,7 +270,7 @@
             <td class = "upT"><button ng-click = "Buyc()" > Buy </button></td>
             <td class = "upT"><button ng-click = "Sellc()" ng-disabled = "drugCostc >= drugCountc.total" > Sell</button></td>
             <td class = "upT"> <p class = "table">{{drugCountc.drug}} </p></td>
-            <td class = "upT"> <p class = "tCount">{{drugCountc.amount}}</p> </td>
+            <td class = "upT"> <p class = "tCount">{{dataCoke.amount}}</p> </td>
           </tr>
           <tr>
             <td class = "upT"> <p class = "table"> Scratching Post </p></td>
@@ -258,7 +279,7 @@
             <td class = "upT"><button ng-click = "Buyh()" > Buy </button></td>
             <td class = "upT"><button ng-click = "Sellh()" > Sell</button></td>
             <td class = "upT"> <p class = "table">{{drugCounth.drug}} </p></td>
-            <td class = "upT"> <p class = "tCount"> {{drugCounth.amount}} </p></td>
+            <td class = "upT"> <p class = "tCount"> {{dataHer.amount}} </p></td>
           </tr>
           <tr>
             <td class = "upT"> <p class = "table">Can of Tuna</p> </td>
@@ -267,7 +288,7 @@
             <td class = "upT"><button ng-click = "Buye()" > Buy </button></td>
             <td class = "upT"><button ng-click = "Selle()" > Sell</button></td>
             <td class = "upT"> <p class = "table">{{drugCounte.drug}} </p></td>
-            <td class = "upT"> <p class = "tCount">{{drugCounte.amount}} </p></td>
+            <td class = "upT"> <p class = "tCount">{{dataExes.amount}} </p></td>
           </tr>
           <tr>
             <td class = "upT"> <p class = "table">Laser Pointer</p></td>
@@ -276,7 +297,7 @@
             <td  class = "upT"><button ng-click = "Buyy()" > Buy </button></td>
             <td  class = "upT"><button ng-click = "Selly()" > Sell</button></td>
             <td  class = "upT"> <p class = "table">{{drugCounty.drug}} </p></td>
-            <td class = "upT"> <p class = "tCount">{{drugCounty.amount}} </p> </td>
+            <td class = "upT"> <p class = "tCount">{{dataMeff.amount}} </p> </td>
           </tr>
         </table>
       <div> 
