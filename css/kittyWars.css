@@ -1,0 +1,246 @@
+.openSubtitle{font-family:Techno;
+              font-size: 200%;}
+.openPage{background: url(http://www.wallpapersonview.com/wallpapers/4/animals_beautiful_sweet_great_funny_cute_cat_background-186.jpg);
+  height: 800px;
+}
+
+#numberClass {font-size: 125%;
+              color: red;}
+#numberClass1 {font-size: 125%;
+                color:green;}
+#moneyTotal  {border-image-source: url(http://media.giphy.com/media/sHhIvjc70ZqAE/giphy.gif) ;
+              border-image-width: 20px;
+              border-image-repeat: no-repeat;
+              text-align:center;}
+.travelTimer {border-image-source: url(http://nyan-cat.com/images/nyan-cat.gif);
+              border-image-width: 20px;
+              margin-right: 5%;
+              border-image-repeat: repeat;
+              text-align: center;}
+.travelTimer1{font-size: 150%;}
+.loginField{font-size: 100%;
+            width:35%;
+          border-radius: 10px;}
+.subtitle{
+  text-align:center;
+}
+
+
+#openTitle{text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+          color: white;
+          font-style: italic;
+          font-size: 500%;}
+
+.all{font-family: comic sans ms;
+      -webkit-box-sizing: border-box; 
+-moz-box-sizing: border-box; 
+box-sizing: border-box;}
+
+.firstStuff {margin-bottom: 100%;}
+.buttonWoo {color:white;
+            background-color: black}
+.buttons {
+  margin-top: 50%;
+  color:red;
+  margin-bottom: 20%;
+  background:transparent;
+  -webkit-animation: myfirst 5s infinite; 
+    animation: myfirst 5s;
+}
+@-webkit-keyframes myfirst {
+    0%   {color:red;}
+    25%  {color:#DD7702;}
+    50%  {color:#45619D;} 
+    75%  {color:#3ED715;}
+    100% {color:red;}
+}
+.failWords{margin-left: 10% }
+input {
+  color:black;
+}
+.jailStuff{margin-top: 11% }
+.bribeResult{margin-left:20%}
+.crimeResult {
+  background: url("http://ewallpaperhub.com/wp-content/uploads/2014/12/cat-wallpapers-free.jpg") 50% 0;
+  height: 500px;
+  width:1080px;
+  color: white;
+
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  text-align: center;
+  width: 100%;
+}
+.upT1{
+  margin-top:400%;
+}
+
+.jailP{margin-top: 30%}
+
+.jail {
+  background: url("http://reaganpluscats.com/wp-content/uploads/2013/06/Cat-Caught-Smuggling.jpg") 50% 0;
+  height: 500px;
+  color: white;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+  text-align: center;
+  width: 100%;
+}
+
+button{background: transparent;
+        border-radius: 10px;
+        border: 1px solid black;}
+
+button:hover{
+  background-color: #BCBCBC;
+}
+.upG {height:150px;}
+.upT {height: 800px;}
+.upgrades{background: url("http://www.catster.com/files/cat-tibbs.png") 100% 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  color: white;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+  text-align: center;
+  width: 100%;}
+
+.drugs1 {
+  margin-top: 15%;
+  width: 50%;
+}
+
+#return {
+  margin-top: 5%;
+  vertical-align: middle;
+  color:white;
+  background-color: black;
+}
+
+.cities {
+  margin-top: 15%;
+}
+
+.crime {
+  margin-top: 10%;
+}
+
+.main, .tokyo, .london,.NY, .LA,.crimeStuff {
+   background-size: cover;
+  height: 100%;
+  color: white;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  text-align: center;
+  border: 2px solid black;
+  width: 100%;
+}
+.tableBtn { margin-top: 10%}
+.tableInfo{ margin-top: 3%}
+
+
+.top {
+  background: url("http://images2.layoutsparks.com/1/137109/lollypop-rainbow-colorful-bright.gif");
+  background-size: 100% 100%;
+  height: 170px;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  color: white;
+  border: 2px solid black;
+}
+p{
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  color: white;
+  font-size: 150%;
+}
+
+.submit {
+  margin-left: 40%;
+  margin-top: 10%;
+}
+
+.travelBtn {
+  margin-top: 35%;
+  background:transparent;
+}
+
+.classDrug{ color:red;}
+
+.tradeContainer{
+  background: url("https://daveden.files.wordpress.com/2013/02/apple_cat.jpg") 50% 0;
+  min-height: 150px;
+  background-size: cover;
+   color: white;
+  text-align: center;
+  width: 100%;
+}
+
+.return{margin-right: 40%;}
+
+.table1{
+  margin-top: 40%;
+}
+.table2{margin-top:5%;
+        text-align: center;}
+.amount1{margin-top:15%;}
+.amount{margin-top:5%;}
+.table {
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  color: white;
+  margin-top: 12%;
+}
+.tCount {margin-top:50%}
+
+
+
+
+#most {margin-bottom: 40%;}
+
+.tokyo {
+  background: url("http://cache.desktopnexus.com/thumbnails/1421697-bigthumbnail.jpg") 50% 0;
+  min-height: 150px;
+  background-size: contain;
+  color: white;
+  text-align: center;
+}
+
+.containTravel {
+  background: url("http://roflzoo.com/pics/201111/cardboard-plane-cat.jpg") 50% 0;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  color: white;
+  text-align: center;
+  background-size: 33.33% 100%;
+}
+.travelBtn {background-color:black;}
+
+#most {margin-top: 45%;}
+#middle {margin-top: 40%;}
+#petty {margin-top: 45%;}
+#high{margin-top:50%;}
+
+.radAnswer {
+  background-color: black; 
+  color: white;
+  margin-top: 40%;
+}
+.london {
+  background: url("http://3dfreewallpapers.com/pics/cats/beautiful-cats-wallpapers.jpg") 50% 0;
+  background-size:cover;
+  color: white;
+  text-align: center;
+}
+
+.crimeStuff {
+   background: url("http://ewallpaperhub.com/wp-content/uploads/2014/12/cat-wallpapers-free.jpg") 50% 0;
+   color: white;
+  background-size: cover;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+  text-align: center;
+  width: 100%;
+}
+
+.LA {
+  background: url("http://ewallpaperhub.com/wp-content/uploads/2014/12/cat-HD-wallpaper.jpg") 50% 0;
+  min-height: 150px;
+  background-size: cover;
+  color: white;
+  text-align: center;
+}
+.bribeResult {vertical-align: middle;}
+.NY {
+  background: url("http://playconquest.com/wp-content/uploads/2014/08/cutest-kitten-ever-cute-fluffy-siamese-kittens-wallpaper-cats-wallpaper-hd.jpg") 50% 0;}

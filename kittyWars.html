@@ -7,22 +7,65 @@
         <title>Kitty Wars</title>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="author" href="humans.txt">
-        <link rel="stylesheet" type="text/css" href="css/kittyWars.scss">
+        <link rel="stylesheet" type="text/css" href="css/kittyWars.css">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>
-        <script src="https://cdn.firebase.com/js/client/2.0.4/firebase.js"></script>
-        <script src="https://cdn.firebase.com/libs/angularfire/0.9.1/angularfire.min.js"></script>
+       <script src="https://cdn.firebase.com/js/client/1.0.21/firebase.js"></script>
+        <script src="https://cdn.firebase.com/libs/angularfire/0.8.0/angularfire.min.js"></script>
         <script src="https://cdn.firebase.com/js/simple-login/1.6.4/firebase-simple-login.js"></script>
+        
         <script src="js/kittyAngular.js"> </script>
     </head>
     <body ng-controller = "moneyCtrl">
         <div class="container-fluid">
+          <div class="openPage" ng-show = "openPage">
+            <div class="login" ng-show = "login">
+            <div class="row">
+              <div class="col-md-5 col-md-offset-7">
+                <input class = "loginField" type="email" name="email" placeholder="Email"
+                  ng-model= "user.email" ng-required="true">
+                 <input class = "loginField" type="password" name="password" placeholder="Password"
+                  ng-model="user.password" ng-required="true">
+                  <button ng-click = "SignIn()" class = "buttonWoo"> Sign In</button>
+                  <button ng-click = "Register()" class = "buttonWoo"> Register</button>
+
+              </div>
+            </div>
+          </div>
+
+            <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <h1 id = "openTitle"> Kitty Wars</h1>
+              
+                <div class="col-md-9 col-md-offset-3">
+                    <h4 class = "openSubtitle"> A game of whiskers and wit</h4>
+                </div>
+                </div>
+            </div>
+            <div class="login" ng-show = "signUp">
+            <div class="row">
+              <div class="col-md-6 col-md-offset-3">
+                <input class = "loginField" type="email" name="email" placeholder="Email"
+                  ng-model= "user1.email" ng-required="true">
+                 <input class = "loginField" type="password" name="password" placeholder="Password"
+                  ng-model="user1.password" ng-required="true">
+                  <button ng-click = "RegisterAccount()" class = "buttonWoo"> Sign Up</button>
+                  <button class="buttonWoo" ng-click = "signInInstead()"> Sign In</button>
+
+              </div>
+            </div>
+          </div>
+          </div>
+
+          <div class="all" ng-show = "All">
           <div class="top">
           <div class="row">
-            <div class="col-md-3">
-            <div ="travelTimer" ng-show = "travelTimer"><h4> You haz <span> {{TravelTimerSaved.amount}}</span> seconds until you can travel. </h4> </div>
+            <div class="col-md-2">
+            <div ="travelTimer" ng-show = "travelTimer" class =" travelTimer"><h5 class = "travelTimer1"> You haz <span id = "numberClass"> {{TravelTimerSaved.amount}}</span> seconds until you can travel. </h5> </div>
             </div>
-            <div class="col-md-4 col-md-offset-1">
-              <div><h1>Welcome to Kitty Wars</h1>
+            <div class="col-md-4 col-md-offset-2">
+              <div>
+                <h1>Welcome to Kitty Wars</h1>
+                <h5 class = "subtitle"> {{user.email}} is logged in.</h5>
                   <h3 class = "subtitle" ng-show = "open"> Feel free to travel.</h3>
                   <h3 class = "subtitle" ng-show = "Tokyo">You have traveled to Tabbyhassee</h3>
                   <h3 class = "subtitle" ng-show = "London">You have traveled to Catlanta.</h3>
@@ -31,46 +74,43 @@
                 </div>
             </div>
             <div class="col-md-2 col-md-offset-2">
-              <div id="moneyTotal"> <h4> You haz <span>{{moneyFire.total}}</span> cheezburgers. </h4>
+              <div id="moneyTotal"> <h5 class = "travelTimer1"> You haz <span id = "numberClass1">{{moneyFire.total}}</span> cheezburgers. </h5>
                 </div>
             </div>
             </div>
           </div>
           <div class = "main" ng-model = "Main" ng-show= "Main" ng-class = "TravelLocation.place">
           <div class="side">
-          <div class="row">
-            <div class="col-md-2">
-                <button id="crimes" class = "buttons" ng-click="Crime = !Crime; Main = !Main; Return = !Return" ng-disabled = "JailTimer.amount>0"> <h3>Schemes</h3> </button>
+            <div class="row">
+              <div class="col-md-2">
+                  <button id="crimes" class = "buttons" ng-click="Crime = !Crime; Main = !Main; Return = !Return" ng-disabled = "JailTimer.amount>0"> <h3>Schemes</h3> </button>
                 </div>
-                <div class="col-md-8">
-              <div class="jailStuff" ng-show = "JailTimer.amount>0" > <h3> You can continue playing in <span> {{JailTimer.amount}}</span>  seconds</h3></div>
+                  <div class="col-md-8">
+                    <div class="jailStuff" ng-show = "JailTimer.amount>0" > <h3> You can continue playing in <span> {{JailTimer.amount}}</span>  seconds</h3>
+                  </div>
                 
-              </div>
+                  </div>
                 </div>
-                
-                 <div class="row">
-                <div class="col-md-2">
+                  <div class="row">
+                    <div class="col-md-2">
+                      <button id="travel" class = "buttons" ng-click = "travel = !travel; Main = !Main; Return = !Return" ng-disabled = "JailTimer.amount>0"> <h3>Travel</h3> </button>
+                    </div>
+                  </div>
 
-                <button id="travel" class = "buttons" ng-click = "travel = !travel; Main = !Main; Return = !Return" ng-disabled = "JailTimer.amount>0"> <h3>Travel</h3> </button>
-
-                </div>
+                <div class="row">
+                  <div class="col-md-2">
+                    <button id="trade" class = "buttons" ng-click = "trade(classWoo)" ng-disabled = "JailTimer.amount>0"> <h3> Trade</h3> </button>
+                  </div>
                 </div>
 
                 <div class="row">
-                <div class="col-md-2">
-                <button id="trade" class = "buttons" ng-click = "trade(classWoo); Trade" ng-disabled = "JailTimer.amount>0"> <h3> Trade</h3> </button>
+                  <div class="col-md-2">
+                    <button id="upgrades" class = "buttons" ng-click = "UpgradeSwitch()" ng-disabled = "JailTimer.amount>0"> <h3> Upgrades</h3> </button>
+                  </div>
                 </div>
-                </div>
-
-                <div class="row">
-                <div class="col-md-2">
-                <button id="trade" class = "buttons" ng-click = "UpgradeSwitch()" ng-disabled = "JailTimer.amount>0"> <h3> Upgrades</h3> </button>
-              </div>
             </div>
             </div>
-            </div>
-            </div>
-          </div>
+            
           <div class="contain" ng-model = "Crime" >
           <div class='crimeStuff' ng-show = "Crime">
           <div class='row'>
@@ -251,53 +291,48 @@
           </div>
         </div>
 
-        <div class="tradeContainer" ng-show = "Trade" ng-model = "Main">
+        <div class="tradeContainer" ng-show = "Trade">
       <div id="trade" ng-show = "Trade" >
-        <table id = 'tokyo' width = '100%'>
-          <tr>
-            <td class = "upT"> <p class = "table"> Boxes </p></td>
-            <td class = "upT"> <p class = "table1">{{mCost}} </p></td>
-            <td class = "upT"> <input type='number'  id = 'mInput' class = 'amount' ng-model = "drugCostm"></td>
-            <td class = "upT"><button ng-click = "Buym()" > Buy </button></td>
-            <td class = "upT"><button ng-click = "Sellm()" > Sell</button></td>
-            <td class = "upT"> <p class = "table">{{drugCountM.drug}} </p></td>
-            <td class = "upT"> <p class = "tCount">{{dataM.amount}} </p> </td>
+        <table id = 'tokyo' width = '100%' class = "upT">
+          <tr class = "firstStuff">
+            <td> <p class = "table"> Boxes </p></td>
+            <td> <p class = "table1">{{mCost}} </p></td>
+            <td> <input type='number'  id = 'mInput' class = 'amount' ng-model = "drugCostm"></td>
+            <td><button class = 'amount1' ng-click = "Buym()" > Buy </button></td>
+            <td><button class = 'amount1' ng-click = "Sellm()" > Sell</button></td>
+            <td> <p class = "table2"> You have <span class="classDrug">{{dataM.amount}} </span>{{drugCountM.drug}} </p></td>
           </tr>
           <tr>
-            <td class = "upT"> <p class = "table">Catnip </p></td>
-            <td class = "upT"> <p class = "table1">{{cCost}} </p></td>
-            <td class = "upT"><input type='number' id = 'cInput' class = 'amount' ng-model = "drugCostc"> </td>
-            <td class = "upT"><button ng-click = "Buyc()" > Buy </button></td>
-            <td class = "upT"><button ng-click = "Sellc()" ng-disabled = "drugCostc >= drugCountc.total" > Sell</button></td>
-            <td class = "upT"> <p class = "table">{{drugCountc.drug}} </p></td>
-            <td class = "upT"> <p class = "tCount">{{dataCoke.amount}}</p> </td>
+            <td> <p class = "table">Catnip </p></td>
+            <td> <p class = "table1">{{cCost}} </p></td>
+            <td><input type='number' id = 'cInput' class = 'amount' ng-model = "drugCostc"> </td>
+            <td><button class = 'amount1' ng-click = "Buyc()" > Buy </button></td>
+            <td><button class = 'amount1' ng-click = "Sellc()" ng-disabled = "drugCostc >= drugCountc.total" > Sell</button></td>
+            <td> <p class = "table2">You have <span class="classDrug">{{dataCoke.amount}}</span> pounds of {{drugCountc.drug}} </p></td>
           </tr>
           <tr>
-            <td class = "upT"> <p class = "table"> Scratching Post </p></td>
-            <td class = "upT1"><p class = "table1">{{hCost}} </p></td>
-            <td class = "upT"> <input type='number' id = 'cInput' class = 'amount' ng-model = "drugCosth"></td>
-            <td class = "upT"><button ng-click = "Buyh()" > Buy </button></td>
-            <td class = "upT"><button ng-click = "Sellh()" > Sell</button></td>
-            <td class = "upT"> <p class = "table">{{drugCounth.drug}} </p></td>
-            <td class = "upT"> <p class = "tCount"> {{dataHer.amount}} </p></td>
+            <td> <p class = "table"> Scratching Post </p></td>
+            <td><p class = "table1">{{hCost}} </p></td>
+            <td> <input type='number' id = 'cInput' class = 'amount' ng-model = "drugCosth"></td>
+            <td><button class = 'amount1' ng-click = "Buyh()" > Buy </button></td>
+            <td><button class = 'amount1' ng-click = "Sellh()" > Sell</button></td>
+            <td> <p class = "table2"> You have <span class="classDrug">{{dataHer.amount}}</span>   {{drugCounth.drug}}s</p></td>
           </tr>
           <tr>
-            <td class = "upT"> <p class = "table">Can of Tuna</p> </td>
-            <td class = "upT"> <p class = "table1"> {{eCost}} </p></td>
-            <td class = "upT"><input type='number' id = 'eInput' class = 'amount' ng-model = "drugCoste"></td>
-            <td class = "upT"><button ng-click = "Buye()" > Buy </button></td>
-            <td class = "upT"><button ng-click = "Selle()" > Sell</button></td>
-            <td class = "upT"> <p class = "table">{{drugCounte.drug}} </p></td>
-            <td class = "upT"> <p class = "tCount">{{dataExes.amount}} </p></td>
+            <td> <p class = "table">Can of Tuna</p> </td>
+            <td> <p class = "table1"> {{eCost}} </p></td>
+            <td><input type='number' id = 'eInput' class = 'amount' ng-model = "drugCoste"></td>
+            <td><button class = 'amount1' ng-click = "Buye()" > Buy </button></td>
+            <td><button class = 'amount1' ng-click = "Selle()" > Sell</button></td>
+            <td> <p class = "table2">You have <span class="classDrug">{{dataExes.amount}}</span> {{drugCounte.drug}}s </p></td>
           </tr>
           <tr>
-            <td class = "upT"> <p class = "table">Laser Pointer</p></td>
-            <td class = "upT"> <p class = "table1">{{yCost}} </p></td>
-            <td  class = "upT"><input type='number' id = 'yInput' class = 'amount' ng-model = "drugCosty"></td>
-            <td  class = "upT"><button ng-click = "Buyy()" > Buy </button></td>
-            <td  class = "upT"><button ng-click = "Selly()" > Sell</button></td>
-            <td  class = "upT"> <p class = "table">{{drugCounty.drug}} </p></td>
-            <td class = "upT"> <p class = "tCount">{{dataMeff.amount}} </p> </td>
+            <td> <p class = "table">Laser Pointer</p></td>
+            <td> <p class = "table1">{{yCost}} </p></td>
+            <td><input type='number' id = 'yInput' class = 'amount' ng-model = "drugCosty"></td>
+            <td><button class = 'amount1' ng-click = "Buyy()" > Buy </button></td>
+            <td><button class = 'amount1' ng-click = "Selly()" > Sell</button></td>
+            <td> <p class = "table2">You have <span class="classDrug"> {{dataMeff.amount}}</span>  {{drugCounty.drug}}s </p></td>
           </tr>
         </table>
       <div> 
@@ -339,12 +374,13 @@
         <div>
                   
                   <div class="row">
-                    <div class="col-md-4 col-md-offset-5" ng-model = "Return" ng-show = "Return">
-                      <button id = "return" ng-click = "goBack()"> Back to the main menu?</button>
+                    <div class="col-md-3 col-md-offset-5" ng-show = "Return">
+                      <button id = "return" ng-click = "goBack()" class = "return"> Back to the main menu?</button>
                     </div>
                   </div>
 
           </div> 
+          </div>
         </div>
     </body>
 </html>
