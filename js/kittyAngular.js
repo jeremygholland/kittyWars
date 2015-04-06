@@ -388,7 +388,6 @@ $scope.drugCounty =
 
 	$scope.crimeWin = function(){
 	$scope.Crime = false;
-	$scope.Return = true;
 	$scope.pettyWins = true;
 	$scope.jail = false;
 	};
